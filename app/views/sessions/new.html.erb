@@ -1,0 +1,14 @@
+<h1> Log in </h1>
+
+<%= form_for(:session, url: login_path) do |f| %>
+
+  <%= f.select(:id) do %>
+    <% users = User.all.select {|user| user unless logged_in? user } %>
+    <%= options_from_collection_for_select(users, :id, :name) %>
+  <% end %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, class: 'form-control' %>
+
+  <%= f.submit "Log in", class: "btn btn-primary" %>
+<% end %>
