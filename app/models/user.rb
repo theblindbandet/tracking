@@ -9,6 +9,7 @@ class User < ApplicationRecord
             format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}
+  validates :total_hours, presence: true, numericality: {greater_than_or_equal_to: 0}
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
