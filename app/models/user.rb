@@ -11,6 +11,12 @@ class User < ApplicationRecord
   validates :password, presence: true, length: {minimum: 6}
   validates :total_hours, presence: true, numericality: {greater_than_or_equal_to: 0}
 
+  def add_hours(hours)
+    puts "hours: #{hours}"
+    self.total_hours += hours
+    puts "this user's total hours: #{self.total_hours}"
+  end
+
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
