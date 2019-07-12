@@ -72,14 +72,4 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
-
-  test "total_hours should be present" do
-    @user.total_hours = nil
-    assert_not @user.valid?
-  end
-
-  test "total_hours should not be less than 0" do
-    @user.total_hours = -1
-    assert_not @user.valid?
-  end
 end

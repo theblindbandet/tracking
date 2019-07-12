@@ -13,12 +13,7 @@ class SessionsController < ApplicationController
   def destroy
     user = User.find(params[:id])
     if logged_in? user
-      record = user.login_records.build(date: Date::today, 
-                                        logged_in_at: user.session.start_time, 
-                                        logged_out_at: Time.now)
-      record.save
-      user.add_hours (record.logged_out_at - record.logged_in_at) / 3600
-      user.save
+      create_record user.session
       log_out user 
     end
     flash.now[:success] = "Successfully logged out!"
