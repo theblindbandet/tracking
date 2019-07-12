@@ -8,7 +8,7 @@ module SessionsHelper
   end
 
   def log_out(user)
-    user.session.destroy
+    user.session.destroy!
   end
 
   def create_record(session)

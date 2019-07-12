@@ -6,19 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-jordan = User.create!(name:  "Mordan Jiller",
+User.create!(name:  "Mordan Jiller",
              email: "MordJiller@bluealliancesalesforce.org",
              password:              "password",
              password_confirmation: "password")
 
-jordan.login_records.build(Date::today, logged_in_at: Time.now, logged_out_at: Time.now + 1)
-
-patrick = User.create!(name:  "Fatrick Prampton",
+User.create!(name:  "Fatrick Prampton",
              email: "FatPrampton@bluealliancesalesforce.org",
              password:              "password",
              password_confirmation: "password")
-
-patrick.login_records.build(Date::now, logged_in_at: Time.now, logged_out_at: Time.now + 1)
 
 98.times do |n|
   name  = Faker::Name.name

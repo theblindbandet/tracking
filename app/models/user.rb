@@ -11,7 +11,11 @@ class User < ApplicationRecord
   validates :password, presence: true, length: {minimum: 6}
 
   def total_hours
-    self.login_records.map{|r| r.logged_out_at - r.logged_in_at}.reduce(:+) #/ 3600
+    if not self.login_records.empty?
+      seconds = self.login_records.map{|r| r.logged_out_at - r.logged_in_at }.reduce(:+) 
+      return seconds / 3600
+    end
+    return 0
   end
 
   def User.digest(string)
