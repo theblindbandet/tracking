@@ -18,9 +18,27 @@ class User < ApplicationRecord
     return 0
   end
 
+  def logged_in_since
+    if self.session
+      self.session.created_at.localtime.to_s
+    end
+  end
+
+  def logged_in?
+    self.session ? true : false
+  end
+
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
+  end
+
+  def User.logged_in_users
+    User.all.select {|u| u if u.logged_in? }
+  end
+
+  def User.logged_out_users
+    User.all.select {|u| u unless u.logged_in? }
   end
 end

@@ -32,10 +32,11 @@ class LoginRecordCreationTest < ActionDispatch::IntegrationTest
   test "user.total_hours should add up multiple loginrecords" do
     3.times do
       log_in @user
-      Timecop.travel(Time.now + 1.hours) do
+      Timecop.travel(Time.now + 1.seconds) do
         post logout_path, params: {id: @user.id}
       end
     end
-    assert @user.total_hours >= 3
+    puts "total hours: #{@user.total_hours}"
+    assert @user.total_hours >= 3 / 3600
   end
 end
