@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_one :session, dependent: :destroy
   has_many :login_records, dependent: :destroy
+  has_and_belongs_to_many :trainings
   before_save {email.downcase!}
 
   validates :name, presence: true, length: {minimum: 3, maximum: 50}
