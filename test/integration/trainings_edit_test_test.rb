@@ -18,6 +18,8 @@ class TrainingsEditTestTest < ActionDispatch::IntegrationTest
               length: 2.5
             }
           }
+    assert_select "div.alert", "Successfully Updated!"
+    assert_select "p", "Meme Destruction"
     assert_redirected_to @training
   end
 
