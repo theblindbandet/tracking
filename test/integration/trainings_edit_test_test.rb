@@ -14,7 +14,7 @@ class TrainingsEditTestTest < ActionDispatch::IntegrationTest
                                                                   with stale ones",
                                                     length: 2.5}}
     assert_select 'div.alert', 'Successfully Updated!'
-    assert_select 'input[value="Meme Destruction"]'
+    assert_select 'p', 'Meme Destruction'
   end
 
   test "unsuccessful edit" do
