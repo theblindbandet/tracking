@@ -17,6 +17,20 @@ class TrainingsController < ApplicationController
     end
   end
 
+  def edit
+    @training = Training.find(params[:id])
+  end
+
+  def update
+    @training = Training.find(params[:id])
+    if @training.update_attributes(training_params)
+      flash.now[:success] = "Successfully updated!"
+      redirect_to @training
+    else
+      render 'edit'
+    end
+  end
+
   private
 
     def training_params
