@@ -26,7 +26,7 @@ class TrainingsController < ApplicationController
   def update
     @training = Training.find(params[:id])
     if @training.update_attributes(training_params)
-      flash.now[:success] = "Successfully updated!"
+      flash[:success] = "Successfully Updated!"
       redirect_to @training
     else
       render 'edit'

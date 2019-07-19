@@ -13,8 +13,7 @@ class TrainingsEditTestTest < ActionDispatch::IntegrationTest
                                                     description: "A course that tells you how to destroy good memes and replace them
                                                                   with stale ones",
                                                     length: 2.5}}
-    assert_select 'div.alert', 'Successfully Updated!'
-    assert_select 'input[value="Meme Destruction"]'
+    assert_redirected_to @training
   end
 
   test "unsuccessful edit" do
