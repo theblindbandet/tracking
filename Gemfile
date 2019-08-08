@@ -58,6 +58,8 @@ group :test do
   gem 'chromedriver-helper'
   # Test gems
   gem 'rails-dom-testing'
+  # Timecop
+  gem 'timecop'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

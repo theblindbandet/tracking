@@ -10,6 +10,14 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}
 
+  def total_hours
+    if not self.login_records.empty?
+      seconds = self.login_records.map{|r| r.logged_out_at - r.logged_in_at }.reduce(:+) 
+      return seconds / 3600
+    end
+    return 0
+  end
+
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
