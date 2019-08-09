@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   def total_hours
     if not self.login_records.empty?
-      seconds = self.login_records.map{|r| r.logged_out_at - r.logged_in_at }.reduce(:+) 
+      seconds = self.login_records.map{|r| r.logged_out_at - r.logged_in_at }.reduce(:+)
       return seconds / 3600
     end
     return 0
@@ -35,10 +35,10 @@ class User < ApplicationRecord
   end
 
   def User.logged_in_users
-    User.all.select {|u| u if u.logged_in? }
+    User.joins(:session).where.not(session: nil)
   end
 
   def User.logged_out_users
-    User.all.select {|u| u unless u.logged_in? }
+    User.joins("LEFT JOIN sessions ON users.id = sessions.user_id").where("user_id IS NULL")
   end
 end
