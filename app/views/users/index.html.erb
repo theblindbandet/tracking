@@ -5,7 +5,7 @@
     <th>Total Hours</th>
     <th>Logged in at</th>
   </tr>
-  <% User.logged_in_users.each do |u| %>
+  <% User.logged_in_users.eager_load(:session).each do |u| %>
     <tr>
       <td><%= u.name %></td>
       <td><%= u.total_hours.round(2) %></td>
@@ -20,7 +20,7 @@
     <th>Name</th>
     <th>Total Hours</th>
   </tr>
-  <% User.logged_out_users.each do |u| %>
+  <% User.logged_out_users.eager_load(:login_records).each do |u| %>
     <tr>
       <td><%= u.name %></td>
       <td><%= u.total_hours.round(2) %></td>

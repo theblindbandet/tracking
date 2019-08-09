@@ -19,9 +19,7 @@ class User < ApplicationRecord
   end
 
   def logged_in_since
-    if self.session
-      self.session.created_at.localtime.to_s
-    end
+    session.created_at.localtime.to_s
   end
 
   def logged_in?
@@ -39,6 +37,6 @@ class User < ApplicationRecord
   end
 
   def User.logged_out_users
-    User.joins("LEFT JOIN sessions ON users.id = sessions.user_id").where("user_id IS NULL")
+    User.joins("LEFT JOIN sessions ON users.id = sessions.user_id").where("sessions.user_id IS NULL")
   end
 end
