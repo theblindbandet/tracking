@@ -1,5 +1,7 @@
 # tracking
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/d1edc569dffff0aa3d47/maintainability)](https://codeclimate.com/github/RAR1741/tracking/maintainability)
+
 ### Stuff for webapp that we need
  - Replacement for spreadsheet sign-in:
    - Learnings Management/Training
