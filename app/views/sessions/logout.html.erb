@@ -1,9 +1,16 @@
-<h1> Log out </h1>
+<div class="container-fluid d-flex vh-100 flex-column justify-content-center">
+  <div class="col-2 mx-auto">
+    <h1 class="text-center"> Log out </h1>
 
-<%= form_tag do %>
-  <% users = User.where(id: Session.all.select(:user_id)) %>
-  <% filtered_users = options_from_collection_for_select(users, :id, :name) %>
-  <%= select_tag(:id, filtered_users) %>
-
-  <%= submit_tag("Log out") %>
-<% end %>
+    <%= form_tag do %>
+      <% users = User.where(id: Session.all.select(:user_id)) %>
+      <% filtered_users = options_from_collection_for_select(users, :id, :name) %>
+      <div class="form-group">
+        <%= label_tag(:id, "Username") %>
+        <%= select_tag(:id, filtered_users, class: "form-control") %>
+      </div>
+    
+      <%= submit_tag("Log out", class: "btn btn-primary btn-block") %>
+    <% end %>
+  </div>
+</div>

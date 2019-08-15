@@ -1,12 +1,21 @@
-<h1> Log in </h1>
+<div class="container-fluid d-flex vh-100 flex-column justify-content-center">
+  <div class="col-2 mx-auto">
+    <h1 class="text-center"> Log in </h1>
 
-<%= form_tag do %>
-  <% users = User.all.select {|user| user unless logged_in? user } %>
-  <% filtered_users = options_from_collection_for_select(users, :id, :name) %>
-  <%= select_tag(:id, filtered_users) %>
+    <%= form_tag do %>
+      <% users = User.all.select {|user| user unless logged_in? user } %>
+      <% filtered_users = options_from_collection_for_select(users, :id, :name) %>
+      <div class="form-group">
+        <%= label_tag(:id, "Username") %>
+        <%= select_tag(:id, filtered_users, class: "form-control") %>
+      </div>
 
-  <%= label_tag(:password, "Password") %>
-  <%= password_field_tag(:password) %>
+      <div class="form-group">
+        <%= label_tag(:password, "Password") %>
+        <%= password_field_tag(:password, "", class: "form-control") %>
+      </div>
 
-  <%= submit_tag("Log in") %>
-<% end %>
+      <%= submit_tag("Log in", class: "btn btn-primary btn-block") %>
+    <% end %>
+  </div>
+</div>
