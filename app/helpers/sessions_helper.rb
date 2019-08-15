@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SessionsHelper
   def log_in(user)
     Session.create!(user_id: user.id)
@@ -12,9 +14,9 @@ module SessionsHelper
   end
 
   def create_record(session)
-    record = session.user.login_records.build(date: Date::today, 
-                                        logged_in_at: session.start_time, 
-                                        logged_out_at: Time.now)
+    record = session.user.login_records.build(date: Date.today,
+                                              logged_in_at: session.start_time,
+                                              logged_out_at: Time.now)
     record.save
   end
 end
