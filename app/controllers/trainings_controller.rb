@@ -1,10 +1,9 @@
+# frozen_string_literal: true
+
 class TrainingsController < ApplicationController
-  def show
-  end
+  def show; end
 
-  def new
-  end
+  def new; end
 
-  def create
-  end
+  def create; end
 end
