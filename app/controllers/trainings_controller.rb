@@ -29,7 +29,7 @@ class TrainingsController < ApplicationController
       flash[:success] = "Successfully Updated!"
       redirect_to @training
     else
-      render 'edit'
+      render "edit"
     end
   end
 
