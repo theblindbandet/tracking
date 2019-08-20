@@ -9,7 +9,9 @@ class TrainingsEditTestTest < ActionDispatch::IntegrationTest
 
   test "successful edit" do
     get edit_training_path(@training)
+
     assert_select "h1", "Edit Training"
+
     patch training_path(@training),
           params: {
             training: {
@@ -18,7 +20,11 @@ class TrainingsEditTestTest < ActionDispatch::IntegrationTest
               length: 2.5
             }
           }
-    assert_redirected_to @training
+
+    follow_redirect!
+
+    assert_select "div.alert", "Successfully Updated!"
+    assert_select "p", "Title: Meme Destruction"
   end
 
   test "unsuccessful edit" do
