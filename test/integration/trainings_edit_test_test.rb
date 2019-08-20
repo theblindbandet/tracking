@@ -21,9 +21,10 @@ class TrainingsEditTestTest < ActionDispatch::IntegrationTest
             }
           }
 
+    follow_redirect!
+
     assert_select "div.alert", "Successfully Updated!"
-    assert_select "p", "Meme Destruction"
-    assert_redirected_to @training
+    assert_select "p", "Title: Meme Destruction"
   end
 
   test "unsuccessful edit" do

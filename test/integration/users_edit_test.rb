@@ -14,7 +14,11 @@ class UsersEditTest < ActionDispatch::IntegrationTest
                                               email: "valid@email.com",
                                               password: "foobar",
                                               password_confirmation: "foobar" } }
-    assert_select "p"
+    follow_redirect!
+
+    assert_select "div.alert", "Successfully updated!"
+    assert_select "p", "name : Valid User"
+    assert_select "p", "email : valid@email.com"
   end
 
   test "unsuccessful edit" do
